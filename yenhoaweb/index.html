@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yên Hoà Explore - Khám Phá Vẻ Đẹp Bất Tận</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 2. Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Configuration for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'background': '#ffffff',      // Nền trắng
+                        'text': '#1a202c',           // Màu chữ chính (xám đậm)
+                        'text-light': '#f7fafc',      // Màu chữ sáng (trên nền tối/màu)
+                        'accent': '#d97706',          // Màu nhấn (cam đất)
+                        'primary': '#2c5282',         // Màu chính (xanh dương đậm)
+                        'secondary': '#a0aec0',       // Màu phụ (xám nhạt)
+                    },
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS bổ sung để đảm bảo scroll-behavior mượt mà trên mọi trình duyệt */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-background font-sans text-text">
+
+    <!-- ============================================ -->
+    <!-- HEADER / NAVIGATION                          -->
+    <!-- ============================================ -->
+    <header id="main-header" class="sticky top-0 z-50 w-full transition-all duration-300 ease-in-out">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold font-serif text-primary">
+                    Yên Hoà Explore
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#" class="text-text hover:text-accent transition-colors duration-300 relative group">
+                        <span>Trang Chủ</span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-text hover:text-accent transition-colors duration-300 relative group">
+                        <span>Giới Thiệu</span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-text hover:text-accent transition-colors duration-300 relative group">
+                        <span>Trải Nghiệm</span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-text hover:text-accent transition-colors duration-300 relative group">
+                        <span>Văn Hoá</span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-text hover:text-accent transition-colors duration-300 relative group">
+                        <span>Cẩm Nang</span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-text hover:text-accent transition-colors duration-300 relative group">
+                        <span>Liên Hệ</span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
+
+                <!-- CTA Button (Desktop) -->
+                <a href="#"
+                    class="hidden lg:inline-block bg-accent text-dark font-semibold py-2 px-6 rounded-full hover:scale-105 hover:shadow-lg transition-all duration-300">
+                    Đặt Tour Ngay
+                </a>
+
+                <!-- Hamburger Menu Button (Mobile) -->
+                <button id="menu-toggle" class="lg:hidden text-primary focus:outline-none z-50">
+                    <!-- Hamburger Icon -->
+                    <svg id="hamburger-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                    <!-- Close Icon -->
+                    <svg id="close-icon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="lg:hidden fixed top-0 left-0 w-full h-screen bg-background/95 backdrop-blur-sm flex flex-col justify-center items-center gap-8 -translate-x-full transition-transform duration-300 ease-in-out">
+            <a href="#" class="text-2xl font-semibold text-text hover:text-accent transition-colors">Trang Chủ</a>
+            <a href="#" class="text-2xl font-semibold text-text hover:text-accent transition-colors">Giới Thiệu</a>
+            <a href="#" class="text-2xl font-semibold text-text hover:text-accent transition-colors">Trải Nghiệm</a>
+            <a href="#" class="text-2xl font-semibold text-text hover:text-accent transition-colors">Văn Hoá</a>
+            <a href="#" class="text-2xl font-semibold text-text hover:text-accent transition-colors">Cẩm Nang</a>
+            <a href="#" class="text-2xl font-semibold text-text hover:text-accent transition-colors">Liên Hệ</a>
+            <div class="mt-8">
+                <a href="#"
+                    class="bg-accent text-dark font-semibold py-3 px-8 rounded-full text-lg hover:scale-105 transition-transform duration-300">
+                    Đặt Tour Ngay
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- HERO SECTION (Content để có thể cuộn trang) -->
+    <!-- ============================================ -->
+    <main>
+        <section class="relative h-screen w-full flex items-center justify-center text-white">
+            <!-- Background Image -->
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <img src="https://images.vietnamtourism.gov.vn/vn/images/2021/thang_8/410031342f74c62a9f658123422_18102019.jpg"
+                alt="Vịnh Hạ Long" class="absolute inset-0 w-full h-full object-cover">
+
+            <!-- Hero Content -->
+            <div class="z-20 text-center">
+                <h1 class="text-4xl md:text-6xl font-serif font-bold drop-shadow-lg">Khám Phá Yên Hoà</h1>
+                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">Nơi vẻ đẹp của đất trời hội tụ, mang
+                    đến những trải nghiệm không thể nào quên.</p>
+            </div>
+        </section>
+
+        <!-- Thêm nội dung dài để có thể cuộn trang -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-serif mb-4">Nội dung trang web</h2>
+                <p class="max-w-3xl mx-auto">
+                    Đây là khu vực nội dung để bạn có thể thấy hiệu ứng cuộn của thanh điều hướng.
+                    Khi bạn cuộn xuống, nền của header sẽ chuyển từ trong suốt sang màu trắng và có bóng đổ.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </section>
+        <!-- ===== SECTION GIỚI THIỆU - TẠI SAO CHỌN YÊN HOÀ? ===== -->
+        <section id="about" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 lg:px-8">
+
+                <!-- Grid container: 1 cột trên mobile, 2 cột từ màn hình lớn (lg) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                    <!-- === CỘT TRÁI: HÌNH ẢNH === -->
+                    <div class="fade-in-section">
+                        <img src="./dist/assets/images/img_1.png" alt="Nụ cười của người phụ nữ dân tộc tại bản Yên Hoà"
+                            class="w-full h-auto object-cover rounded-xl shadow-lg max-h-[600px] lg:max-h-full">
+                    </div>
+
+                    <!-- === CỘT PHẢI: NỘI DUNG VĂN BẢN === -->
+                    <div class="fade-in-section" style="transition-delay: 200ms;">
+
+                        <!-- Tiêu đề phụ -->
+                        <p class="font-serif text-lg text-primary font-bold">
+                            Câu Chuyện Về Miền Đất An Yên
+                        </p>
+
+                        <!-- Tiêu đề chính -->
+                        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-dark mt-2 mb-6">
+                            Yên Hoà: Không Chỉ Là Một Điểm Đến
+                        </h2>
+
+                        <!-- Đoạn văn mô tả -->
+                        <p class="text-dark leading-relaxed mb-8">
+                            Tọa lạc giữa những dãy núi trập trùng, bản Yên Hoà là nơi thời gian như trôi chậm lại. Chúng
+                            tôi mời bạn đến để không chỉ ngắm nhìn vẻ đẹp hoang sơ, mà còn để lắng nghe, cảm nhận và hòa
+                            mình vào nhịp sống bình dị, khám phá những giá trị văn hoá độc đáo đã được gìn giữ qua nhiều
+                            thế hệ.
+                        </p>
+
+                        <!-- Danh sách các điểm nổi bật -->
+                        <ul class="space-y-6">
+                            <!-- Item 1 -->
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div
+                                        class="flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 text-primary">
+                                        <!-- Icon Núi -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-semibold text-text-dark">Thiên Nhiên Hùng Vĩ</h3>
+                                    <p class="mt-1 text-text-dark">Đắm mình trong không gian núi rừng nguyên sơ và
+                                        không khí trong lành.</p>
+                                </div>
+                            </li>
+
+                            <!-- Item 2 -->
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div
+                                        class="flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 text-primary">
+                                        <!-- Icon Con Người (Văn hoá) -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m-7.5-2.962c.57-1.023-.194-1.37-1.01-1.37-1.352 0-2.88.544-3.642 1.513C2.25 15.147 2.25 18 4.5 18c.552 0 1.053-.224 1.423-.574m10.828-9.855A3.75 3.75 0 0 1 18 5.25a3.75 3.75 0 0 1 3.75 3.75 3.75 3.75 0 0 1-3.75 3.75m-13.5-9A3.75 3.75 0 0 1 6 5.25a3.75 3.75 0 0 1 3.75 3.75 3.75 3.75 0 0 1-3.75 3.75M6 18c2.209 0 4-1.791 4-4S8.209 10 6 10 2 11.791 2 14s1.791 4 4 4Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-semibold text-text-dark">Văn Hoá Bản Địa</h3>
+                                    <p class="mt-1 text-dark">Khám phá nếp sống, ẩm thực và những câu chuyện độc
+                                        đáo của người dân nơi đây.</p>
+                                </div>
+                            </li>
+
+                            <!-- Item 3 -->
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div
+                                        class="flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 text-primary">
+                                        <!-- Icon Trái tim (Trải nghiệm) -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-semibold text-text-dark">Trải Nghiệm Đích Thực</h3>
+                                    <p class="mt-1 text-dark">Tạo nên những kỷ niệm đáng nhớ không thể tìm thấy ở
+                                        bất kỳ đâu khác.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Bắt đầu Section "Trải Nghiệm Không Thể Bỏ Lỡ" -->
+        <section class="bg-slate-50 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Tiêu đề Section -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+                        Trải Nghiệm Không Thể Bỏ Lỡ
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-600">Khám phá những hoạt động đặc sắc và hòa mình vào thiên nhiên
+                        tại Yên Hoà.</p>
+                </div>
+
+                <!-- Lưới chứa các Card -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Card 1: Chèo thuyền Kayak -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover" src="./dist/assets/images/thuyền_1.png"
+                                alt="Chèo thuyền Kayak trên sông">
+                            <!-- Lớp phủ nhẹ khi hover để tăng tính tương tác (Tùy chọn) -->
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-serif font-semibold text-gray-800 mb-2">Chèo thuyền Kayak</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Lướt nhẹ trên mặt hồ trong xanh, khám phá những góc khuất hoang sơ và tận hưởng không
+                                khí trong lành.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Đi bộ xuyên rừng -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1542382257-80dedb750763?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                                alt="Đi bộ xuyên rừng">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-serif font-semibold text-gray-800 mb-2">Trekking Rừng Già</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Thử thách bản thân với những cung đường mòn, lắng nghe tiếng chim hót và khám phá hệ
+                                sinh thái đa dạng.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Thăm bản làng -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1534086119313-26a1543cec29?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                                alt="Thăm bản làng văn hóa">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-serif font-semibold text-gray-800 mb-2">Thăm Bản Làng Văn Hóa</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Giao lưu cùng người dân bản địa, tìm hiểu những nét văn hóa độc đáo và thưởng thức ẩm
+                                thực địa phương.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Tắm thác -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1501622549228-655f0a07b7b3?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                                alt="Tắm thác mát lạnh">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-serif font-semibold text-gray-800 mb-2">Tắm Thác Mát Lạnh</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Đắm mình trong dòng nước mát rượi của những con thác tự nhiên, gột rửa mọi mệt mỏi và lo
+                                toan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Ẩm thực địa phương -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1628437635568-17234839e144?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                                alt="Thưởng thức ẩm thực địa phương">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-serif font-semibold text-gray-800 mb-2">Ẩm Thực Đặc Sản</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Nếm thử các món ăn được chế biến từ nguyên liệu tươi ngon của núi rừng, mang đậm hương
+                                vị bản địa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Đốt lửa trại -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1593955743496-981177659a85?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                                alt="Đốt lửa trại và giao lưu">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-serif font-semibold text-gray-800 mb-2">Đêm Lửa Trại</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Cùng nhau quây quần bên ánh lửa bập bùng, ca hát, nhảy múa và chia sẻ những câu chuyện
+                                thú vị.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Kết thúc Section -->
+
+        <!-- ===== SECTION VĂN HOÁ & CON NGƯỜI BẮT ĐẦU ===== -->
+        <section id="culture" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+
+                <!-- Tiêu đề chính của Section -->
+                <div class="text-center mb-12 md:mb-20" data-aos="fade-up">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-dark">
+                        Nét Đẹp Văn Hoá & Con Người
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        Khám phá những giá trị tinh thần độc đáo và sự nồng hậu của người dân bản địa.
+                    </p>
+                    <div class="mt-4 w-24 h-1 bg-primary mx-auto rounded"></div>
+                </div>
+
+                <!-- Dòng 1: Hình ảnh trái, văn bản phải -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center mb-12 md:mb-20">
+                    <!-- Cột hình ảnh -->
+                    <div data-aos="fade-right" data-aos-duration="1000">
+                        <div class="relative aspect-square w-full max-w-md mx-auto">
+                            <!-- Lớp nền tạo hiệu ứng bóng đổ và chiều sâu -->
+                            <div class="absolute inset-0 bg-secondary rounded-3xl transform rotate-6"></div>
+                            <!-- Hình ảnh chính với mask lục giác -->
+                            <img src="https://images.unsplash.com/photo-1598217342586-6515075e8d35?q=80&w=1887&auto=format&fit=crop"
+                                alt="Nghệ thuật dệt thổ cẩm"
+                                class="relative w-full h-full object-cover rounded-3xl shadow-2xl">
+                        </div>
+                    </div>
+
+                    <!-- Cột văn bản -->
+                    <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                        <h3 class="font-serif text-3xl md:text-4xl font-bold text-primary">
+                            Nghệ Thuật Dệt Thổ Cẩm
+                        </h3>
+                        <p class="mt-4 text-gray-700 leading-relaxed text-lg">
+                            Thổ cẩm không chỉ là một sản phẩm thủ công, mà còn là linh hồn của người dân tộc thiểu số.
+                            Từng sợi chỉ, từng hoa văn đều kể một câu chuyện về cuộc sống, tín ngưỡng và ước mơ. Đây là
+                            một di sản văn hóa phi vật thể quý giá, được truyền từ đời này sang đời khác.
+                        </p>
+                        <a href="#"
+                            class="inline-block mt-6 text-primary font-semibold border-b-2 border-primary hover:text-dark hover:border-dark transition-colors duration-300">
+                            Tìm hiểu thêm &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dòng 2: Văn bản trái, hình ảnh phải (Bố cục đảo ngược) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <!-- Cột văn bản (Sử dụng 'md:order-1' để đảo vị trí trên desktop) -->
+                    <div class="md:order-1" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+                        <h3 class="font-serif text-3xl md:text-4xl font-bold text-primary">
+                            Con Người Thân Thiện, Mến Khách
+                        </h3>
+                        <p class="mt-4 text-gray-700 leading-relaxed text-lg">
+                            Điều níu chân du khách không chỉ là cảnh đẹp mà còn là tấm lòng nồng hậu của người dân nơi
+                            đây. Bạn sẽ luôn được chào đón bằng những nụ cười rạng rỡ, sự chân thành và những bữa cơm
+                            đậm đà tình cảm. Họ là những "đại sứ văn hoá" tuyệt vời nhất.
+                        </p>
+                        <a href="#"
+                            class="inline-block mt-6 text-primary font-semibold border-b-2 border-primary hover:text-dark hover:border-dark transition-colors duration-300">
+                            Gặp gỡ người dân &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Cột hình ảnh (Sử dụng 'md:order-2') -->
+                    <div class="md:order-2" data-aos="fade-left" data-aos-duration="1000">
+                        <!-- Sử dụng mask hình lục giác độc đáo -->
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop"
+                            alt="Con người thân thiện mến khách"
+                            class="w-full h-auto object-cover shadow-2xl clip-hexagon aspect-square max-w-md mx-auto">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ===== SECTION VĂN HOÁ & CON NGƯỜI KẾT THÚC ===== -->
+
+        <!-- ===== SECTION ẨM THỰC ĐỊA PHƯƠNG ===== -->
+        <section id="am-thuc" class="py-16 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Tiêu đề Section -->
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif-display text-gray-800">
+                        Hương Vị Miền Tây Xứ Nghệ
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        Khám phá những món ăn đặc sản dân dã, mang đậm bản sắc văn hóa và tinh hoa của núi rừng.
+                    </p>
+                </div>
+
+                <!-- Wrapper của Slider -->
+                <div class="relative">
+                    <!-- Swiper -->
+                    <div class="swiper myAmThucSwiper">
+                        <div class="swiper-wrapper">
+                            <!-- Slide 1: Cá Mát Sông Giăng -->
+                            <div class="swiper-slide">
+                                <div
+                                    class="bg-white rounded-lg shadow-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl">
+                                    <div class="overflow-hidden">
+                                        <img src="https://i.imgur.com/uV6GqC5.jpeg" alt="Cá Mát Sông Giăng"
+                                            class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-2xl font-bold font-serif-display text-gray-900 mb-2">Cá Mát Sông
+                                            Giăng</h3>
+                                        <p class="text-gray-700 leading-relaxed">
+                                            Đặc sản trứ danh với thớ thịt săn chắc, thơm ngọt, thường được nướng trên
+                                            than hồng hoặc đồ chín, giữ trọn vị tươi ngon của dòng sông.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Cơm Lam -->
+                            <div class="swiper-slide">
+                                <div
+                                    class="bg-white rounded-lg shadow-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl">
+                                    <div class="overflow-hidden">
+                                        <img src="https://i.imgur.com/gK9B74K.jpeg" alt="Cơm lam"
+                                            class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-2xl font-bold font-serif-display text-gray-900 mb-2">Cơm Lam
+                                        </h3>
+                                        <p class="text-gray-700 leading-relaxed">
+                                            Gạo nếp nương nấu trong ống tre non, tỏa hương thơm quyến rũ của nếp, tre và
+                                            khói bếp. Cơm dẻo, ngọt thanh, đậm đà hương vị núi rừng.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Canh Bồi -->
+                            <div class="swiper-slide">
+                                <div
+                                    class="bg-white rounded-lg shadow-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl">
+                                    <div class="overflow-hidden">
+                                        <img src="https://i.imgur.com/UfG5G3Q.jpeg" alt="Canh bồi"
+                                            class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-2xl font-bold font-serif-display text-gray-900 mb-2">Canh Bồi
+                                        </h3>
+                                        <p class="text-gray-700 leading-relaxed">
+                                            Món canh độc đáo của người Thái, nấu từ rau và bột gạo, có vị bùi, ngọt mát.
+                                            Là món ăn thanh nhiệt, giải độc rất đặc trưng của vùng cao.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4: Cháo Lươn -->
+                            <div class="swiper-slide">
+                                <div
+                                    class="bg-white rounded-lg shadow-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl">
+                                    <div class="overflow-hidden">
+                                        <img src="https://i.imgur.com/1O6cQx8.jpeg" alt="Cháo Lươn"
+                                            class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-2xl font-bold font-serif-display text-gray-900 mb-2">Cháo Lươn
+                                            Xứ Nghệ</h3>
+                                        <p class="text-gray-700 leading-relaxed">
+                                            Lươn đồng được chế biến công phu, thịt mềm ngọt, không tanh, quyện trong bát
+                                            cháo sánh mịn, cay nồng vị hành tăm và ớt, ăn một lần là nhớ mãi.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 5: Măng Đắng -->
+                            <div class="swiper-slide">
+                                <div
+                                    class="bg-white rounded-lg shadow-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl">
+                                    <div class="overflow-hidden">
+                                        <img src="https://i.imgur.com/2s3K2z7.jpeg" alt="Măng đắng"
+                                            class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-2xl font-bold font-serif-display text-gray-900 mb-2">Măng Đắng
+                                        </h3>
+                                        <p class="text-gray-700 leading-relaxed">
+                                            Vị đắng nhẹ ban đầu nhưng hậu vị ngọt thanh, măng có thể luộc chấm chẩm chéo
+                                            hoặc xào, nướng. Một "tặng vật" quý giá của núi rừng.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nút điều hướng -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+        <div class="container mx-auto px-4 py-12">
+            <header class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800">Khoảnh Khắc Yên Hoà</h1>
+                <p class="text-lg text-gray-600 mt-2">Nơi lưu giữ những ký ức đẹp nhất.</p>
+            </header>
+
+            <!-- Gallery Grid -->
+            <main id="gallery" class="w-full columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+                <!-- Mỗi `div` là một ảnh trong gallery. Thêm/xóa dễ dàng -->
+                <div class="gallery-item group cursor-pointer relative">
+                    <img src="https://images.unsplash.com/photo-1542637643-757419914619?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600"
+                        alt="Cảnh đẹp Yên Hoà 1"
+                        class="block w-full h-auto rounded-lg shadow-md transition-all duration-300 filter blur-[1px] brightness-75 group-hover:filter-none group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg">
+                    </div>
+                </div>
+
+                <div class="gallery-item group cursor-pointer relative">
+                    <img src="https://images.unsplash.com/photo-1563234241-98546021206c?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600"
+                        alt="Cảnh đẹp Yên Hoà 2"
+                        class="block w-full h-auto rounded-lg shadow-md transition-all duration-300 filter blur-[1px] brightness-75 group-hover:filter-none group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg">
+                    </div>
+                </div>
+
+                <div class="gallery-item group cursor-pointer relative">
+                    <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600"
+                        alt="Cảnh đẹp Yên Hoà 3"
+                        class="block w-full h-auto rounded-lg shadow-md transition-all duration-300 filter blur-[1px] brightness-75 group-hover:filter-none group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg">
+                    </div>
+                </div>
+
+                <div class="gallery-item group cursor-pointer relative">
+                    <img src="https://images.unsplash.com/photo-1588263995873-a81577901265?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600"
+                        alt="Cảnh đẹp Yên Hoà 4"
+                        class="block w-full h-auto rounded-lg shadow-md transition-all duration-300 filter blur-[1px] brightness-75 group-hover:filter-none group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg">
+                    </div>
+                </div>
+
+                <!-- Thêm các ảnh khác vào đây -->
+                <div class="gallery-item group cursor-pointer relative">
+                    <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600"
+                        alt="Cảnh đẹp Yên Hoà 5"
+                        class="block w-full h-auto rounded-lg shadow-md transition-all duration-300 filter blur-[1px] brightness-75 group-hover:filter-none group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg">
+                    </div>
+                </div>
+
+                <div class="gallery-item group cursor-pointer relative">
+                    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600"
+                        alt="Cảnh đẹp Yên Hoà 6"
+                        class="block w-full h-auto rounded-lg shadow-md transition-all duration-300 filter blur-[1px] brightness-75 group-hover:filter-none group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg">
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+        <!-- Lightbox Structure (bị ẩn mặc định) -->
+        <div id="lightbox"
+            class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 opacity-0 invisible transition-opacity duration-300">
+            <!-- Nút đóng -->
+            <button id="close-lightbox"
+                class="absolute top-5 right-5 text-white text-4xl leading-none hover:text-gray-300 transition-colors">&times;</button>
+
+            <!-- Nút điều hướng: Trái -->
+            <button id="prev-btn"
+                class="absolute left-5 top-1/2 -translate-y-1/2 text-white text-5xl hover:text-gray-300 transition-colors">&#8249;</button>
+
+            <!-- Nút điều hướng: Phải -->
+            <button id="next-btn"
+                class="absolute right-5 top-1/2 -translate-y-1/2 text-white text-5xl hover:text-gray-300 transition-colors">&#8250;</button>
+
+            <!-- Vùng chứa ảnh phóng to -->
+            <div class="relative">
+                <img id="lightbox-img" src="" alt="Ảnh phóng to"
+                    class="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-xl">
+            </div>
+        </div>
+
+        <div class="h-screen">
+
+        </div>
+    </main>
+
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT                                   -->
+    <!-- ============================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.getElementById('main-header');
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            // 1. Hiệu ứng header khi cuộn trang
+            // ------------------------------------
+            const handleScroll = () => {
+                // Thêm/xóa class khi cuộn qua 50px
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-background', 'shadow-md');
+                } else {
+                    header.classList.remove('bg-background', 'shadow-md');
+                }
+            };
+
+            // Lắng nghe sự kiện cuộn
+            window.addEventListener('scroll', handleScroll);
+
+            // 2. Chức năng đóng/mở Mobile Menu
+            // ------------------------------------
+            const toggleMenu = () => {
+                // Toggle class để hiện/ẩn menu mobile với hiệu ứng trượt
+                mobileMenu.classList.toggle('-translate-x-full');
+
+                // Ẩn/hiện icon hamburger và close
+                hamburgerIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            };
+
+            // Lắng nghe sự kiện click vào nút hamburger
+            menuToggle.addEventListener('click', toggleMenu);
+
+            // Đóng menu khi click vào một link trên mobile
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        });
+    </script>
+    <!-- 4. Swiper.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- 5. Khởi tạo Swiper -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper('.myAmThucSwiper', {
+                // Tùy chọn cơ bản
+                loop: true, // Lặp lại vô tận
+                spaceBetween: 30, // Khoảng cách giữa các slide
+
+                // Cấu hình responsive (breakpoints)
+                // Đây là phần quan trọng nhất để đáp ứng yêu cầu
+                slidesPerView: 1, // Mặc định hiển thị 1 slide (cho mobile)
+                breakpoints: {
+                    // Khi chiều rộng màn hình >= 640px
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    // Khi chiều rộng màn hình >= 1024px
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                },
+
+                // Điều hướng bằng mũi tên
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{
+  "id": "I9z6aIi5BZLJ1e8P_fnmyAU",
+  "created": 1761270814,
+  "model": "gemini-2.5-flash",
+  "object": "chat.completion",
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant"
+      }
+    }
+  ],
+  "usage": {
+    "completion_tokens": 799,
+    "prompt_tokens": 75,
+    "total_tokens": 874,
+    "completion_tokens_details": {
+      "reasoning_tokens": 799,
+      "text_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "text_tokens": 75
+    }
+  },
+  "vertex_ai_grounding_metadata": [],
+  "vertex_ai_url_context_metadata": [],
+  "vertex_ai_safety_results": [],
+  "vertex_ai_citation_metadata": []
+}
